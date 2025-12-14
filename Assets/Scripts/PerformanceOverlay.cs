@@ -23,8 +23,8 @@ public class PerformanceOverlay : MonoBehaviour
 
     private float _timeLeft;
     private float _unscaledFrameCount;
-    private float _accumDelta;        // accumulative unscaled deltaTime across the interval
-    private float _emaFps = -1f;
+    private float _accumDelta;        // accumulative unscaled deltaTime across the interval
+    private float _emaFps = -1f;
     private bool _visible = true;
 
     // cached to avoid GC alloc
@@ -56,13 +56,13 @@ public class PerformanceOverlay : MonoBehaviour
     void Update()
     {
 #if UNITY_EDITOR || UNITY_STANDALONE
-        if (Input.GetKeyDown(toggleKey))
-        {
-            _visible = !_visible;
-            if (label) label.gameObject.SetActive(_visible);
-        }
+        if (Input.GetKeyDown(toggleKey))
+        {
+            _visible = !_visible;
+            if (label) label.gameObject.SetActive(_visible);
+        }
 #endif
-        if (!_visible || label == null || (targetCamera == null && (targetCamera = Camera.main) == null))
+        if (!_visible || label == null || (targetCamera == null && (targetCamera = Camera.main) == null))
             return;
 
         // FPS accumulation (unscaled so it ignores timeScale quirks)
@@ -72,16 +72,18 @@ public class PerformanceOverlay : MonoBehaviour
 
         if (_timeLeft <= 0f)
         {
-            // Raw FPS over interval
-            float intervalFps = _unscaledFrameCount / _accumDelta;
+            // Raw FPS over interval
+            float intervalFps = _unscaledFrameCount / _accumDelta;
             if (_emaFps < 0f) _emaFps = intervalFps; // first sample
-            _emaFps = Mathf.Lerp(intervalFps, _emaFps, fpsSmoothing);
+            _emaFps = Mathf.Lerp(intervalFps, _emaFps, fpsSmoothing);
 
-            // Triangles estimate
-            int triCount = EstimateVisibleTriangles(targetCamera);
+            // Polygon (triangle) + vertex estimate
+            int polyCount, vertCount;
+            EstimateVisibleGeometry(targetCamera, out polyCount, out vertCount);
 
             // Display
-            label.text = $"{_emaFps,0:0.0} FPS  |  ~{triCount:n0} tris";
+            // Note: in Unity, polygons == triangles (meshes are fully triangulated)
+            label.text = $"{_emaFps,0:0.0} FPS  |  ~{polyCount:n0} polys  |  ~{vertCount:n0} verts";
 
             // reset interval
             _timeLeft = updateInterval;
@@ -90,12 +92,17 @@ public class PerformanceOverlay : MonoBehaviour
         }
     }
 
-    int EstimateVisibleTriangles(Camera cam)
+    /// <summary>
+    /// Estimates visible polygons (triangles) and vertices in the camera frustum.
+    /// </summary>
+    void EstimateVisibleGeometry(Camera cam, out int polyCount, out int vertCount)
     {
-        if (cam == null) return 0;
-        GeometryUtility.CalculateFrustumPlanes(cam, _frustumPlanes);
+        polyCount = 0;
+        vertCount = 0;
 
-        int total = 0;
+        if (cam == null) return;
+
+        GeometryUtility.CalculateFrustumPlanes(cam, _frustumPlanes);
 
         // MeshFilters (static/dynamic meshes)
         for (int i = 0; i < _meshFilters.Count; i++)
@@ -113,8 +120,9 @@ public class PerformanceOverlay : MonoBehaviour
             var mesh = mf.sharedMesh;
             if (mesh == null) continue;
 
-            // triangles.Length is 3*tris
-            total += mesh.triangles.Length / 3;
+            // triangles.Length is 3 * triangles
+            polyCount += mesh.triangles.Length / 3;
+            vertCount += mesh.vertexCount;
         }
 
         // Skinned meshes
@@ -129,10 +137,9 @@ public class PerformanceOverlay : MonoBehaviour
             var mesh = smr.sharedMesh;
             if (mesh == null) continue;
 
-            total += mesh.triangles.Length / 3;
+            polyCount += mesh.triangles.Length / 3;
+            vertCount += mesh.vertexCount;
         }
-
-        return total;
     }
 
     // Optional: keep caches fresh when scenes load/unload additively
