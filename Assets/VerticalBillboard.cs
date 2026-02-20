@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VerticalBillboard : MonoBehaviour
 {
-    public Transform target;
+    [SerializeField] private Transform targetCamera;
 
-    // Start is called before the first frame update
-    void Start()
+    private void LateUpdate()
     {
-        
-    }
+        if (targetCamera == null) return;
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.LookAt(target, Vector3.up);
+        Vector3 direction = transform.position - targetCamera.position;
+        direction.y = 0;
+
+
+
+        transform.rotation = Quaternion.LookRotation(direction);
     }
 }
