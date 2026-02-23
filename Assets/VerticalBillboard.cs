@@ -9,7 +9,6 @@ public class VerticalBillboard : MonoBehaviour
         if (targetCamera == null) return;
 
         Vector3 direction = transform.position - targetCamera.position;
-        direction.y = 0;
 
 
 
