@@ -26,29 +26,41 @@ PrefabInstance:
     - target: {fileID: 474319650110039816, guid: dc011efb41f2d4a419389aefb4b4270d,
         type: 3}
       propertyPath: _handPoses.Array.size
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 474319650110039816, guid: dc011efb41f2d4a419389aefb4b4270d,
         type: 3}
       propertyPath: _handPoses.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: a24dbf55cffa1c347931ad92a82550dd,
+      objectReference: {fileID: 11400000, guid: e03ad0fdff470314da0b95a1a1676d8b,
         type: 2}
     - target: {fileID: 474319650110039816, guid: dc011efb41f2d4a419389aefb4b4270d,
         type: 3}
       propertyPath: _handPoses.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: aabcff1aeb542b64a95f471f032b331c,
+      objectReference: {fileID: 11400000, guid: 4508ab5905bad0d40b7d9f7a95279f10,
         type: 2}
     - target: {fileID: 474319650110039816, guid: dc011efb41f2d4a419389aefb4b4270d,
         type: 3}
       propertyPath: _handPoses.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 21d3f717408656542a5b3d4af137b3c6,
+      objectReference: {fileID: 11400000, guid: a24dbf55cffa1c347931ad92a82550dd,
         type: 2}
     - target: {fileID: 474319650110039816, guid: dc011efb41f2d4a419389aefb4b4270d,
         type: 3}
       propertyPath: _handPoses.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: aabcff1aeb542b64a95f471f032b331c,
+        type: 2}
+    - target: {fileID: 474319650110039816, guid: dc011efb41f2d4a419389aefb4b4270d,
+        type: 3}
+      propertyPath: _handPoses.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 21d3f717408656542a5b3d4af137b3c6,
+        type: 2}
+    - target: {fileID: 474319650110039816, guid: dc011efb41f2d4a419389aefb4b4270d,
+        type: 3}
+      propertyPath: _handPoses.Array.data[5]
       value: 
       objectReference: {fileID: 11400000, guid: 8bc2a2abeb70699429edfd403b1350f8,
         type: 2}
