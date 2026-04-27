@@ -7,13 +7,13 @@ using UnityEngine.Animations;
 
 public class Clickable : MonoBehaviour
 {
-    public GameObject infoCanvas;
-    public GameObject collectedBow;
+    public GameObject promptBox;
+    public GameObject resultBox;
     //Start is called before the first frame update
     void Start()
     {
-        infoCanvas.SetActive(false);
-        collectedBow.SetActive(false);
+        promptBox.SetActive(false);
+        resultBox.SetActive(false);
     }
 
     //Update is called once per frame
@@ -43,15 +43,15 @@ public class Clickable : MonoBehaviour
 
     public void clickButton()
     {
-        if (infoCanvas != null)
+        if (promptBox != null)
         {
             // This line toggles the state (true to false, or false to true)
-            infoCanvas.SetActive(!infoCanvas.activeSelf);
+            promptBox.SetActive(!promptBox.activeSelf);
         }
     }
 
     public void StartDialogue()
     {
-        collectedBow.SetActive(true);
+        resultBox.SetActive(true);
     }
 }

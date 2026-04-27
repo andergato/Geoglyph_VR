@@ -35,7 +35,7 @@ public class CheckForItem : MonoBehaviour
             //Debug.Log("Avatar is close to NPC");
             if(grabber.GrabbedObject != null)
             {
-                if(grabber.GrabbedObject.gameObject == item)
+                if(grabber.GrabbedObject.gameObject.transform.IsChildOf(item.transform))
                 {
                     //dialogueManagerInstance.StartDialogue();
                     //clickableInstance.StartDialogue();
