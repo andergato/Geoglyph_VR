@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UltimateXR.Avatar;
 
 public class HutInteriorSwitcher : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class HutInteriorSwitcher : MonoBehaviour
     [Header("Optional Other Interiors To Turn Off")]
     [SerializeField] private GameObject[] otherInteriorsToDisable;
 
-    [Header("Player Tag")]
+    [Header("Player Tag (optional fallback)")]
     [SerializeField] private string playerTag = "Player";
 
     private void Start()
@@ -26,18 +27,30 @@ public class HutInteriorSwitcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag(playerTag))
+        Debug.Log("Entered trigger: " + other.name + " | Tag: " + other.tag);
+
+        if (!IsPlayer(other))
             return;
 
+        Debug.Log("Player entered hut");
         EnterHut();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag(playerTag))
+        Debug.Log("Exited trigger: " + other.name + " | Tag: " + other.tag);
+
+        if (!IsPlayer(other))
             return;
 
+        Debug.Log("Player exited hut");
         ExitHut();
+    }
+
+    private bool IsPlayer(Collider other)
+    {
+        // Works for Ultimate XR avatars OR normal tagged player
+        return other.CompareTag(playerTag) || other.GetComponentInParent<UxrAvatar>() != null;
     }
 
     private void EnterHut()
