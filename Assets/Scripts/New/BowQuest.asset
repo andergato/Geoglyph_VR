@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8293cfcfc7fda124b8e082529d6dcb16, type: 3}
+  m_Name: BowQuest
+  m_EditorClassIdentifier: 
+  speakerName: Villager
+  variants:
+  - label: Quest Offer
+    conditions: []
+    lines:
+    - Hello! Welcome to our village. You may have noticed the large dip in the ground
+      as you entered the village.
+    - 'This is called a geoglyph. I''d love to tell you more about it but before
+      that, I have a favor to ask. '
+    - I left my bow in that hut behind me, if you grab it I can teach you how to
+      shoot it!
+    showMarker: 1
+    setFlagOnFinish: quest_bow_accepted
+  - label: Quest In Progress
+    conditions:
+    - {fileID: 11400000, guid: d1dfe8a82039d8949be0b80c59386d4d, type: 2}
+    lines:
+    - Go grab that bow!
+    showMarker: 0
+    setFlagOnFinish: 
+  - label: Quest Complete
+    conditions:
+    - {fileID: 11400000, guid: 9c12f64009625a246b1ac1c24d7c4fbd, type: 2}
+    lines:
+    - Thank you!
+    showMarker: 0
+    setFlagOnFinish: quest_bow_complete

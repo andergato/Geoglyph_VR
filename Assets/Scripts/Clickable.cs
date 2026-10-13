@@ -24,11 +24,11 @@ public class Clickable : MonoBehaviour
 
     //private void OnCollisionStay(Collision collision)
     //{
-    //    if(collision.gameObject.CompareTag("Ray"))
+    //    if (collision.gameObject.CompareTag("Ray"))
     //    {
     //        if (UxrAvatar.LocalAvatarInput.GetButtonsPress(UltimateXR.Core.UxrHandSide.Right, UxrInputButtons.Menu))
     //        {
-    //            if(infoCanvas.activeSelf)
+    //            if (infoCanvas.activeSelf)
     //            {
     //                infoCanvas.SetActive(false);
     //            }
@@ -41,7 +41,7 @@ public class Clickable : MonoBehaviour
     //}
 
 
-    public void clickButton()
+    public void ClickButton()
     {
         if (promptBox != null)
         {

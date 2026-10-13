@@ -14,19 +14,17 @@ public class CheckForItem : MonoBehaviour
     public UxrAvatar avatar;
     public GameObject npc;
     private float threshold = 5f;
-    public GameObject textbox;
+    public string condition;
     //public UxrGrabbableObject grabbedObject;
     // Start is called before the first frame update
     void Start()
     {
-        textbox.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //DialogueManager dialogueManagerInstance = new DialogueManager();
-        Clickable clickableInstance = new Clickable();
         Vector3 avatarPos = avatar.CameraPosition;
         Vector3 npcPos = npc.transform.position;
         float distance = Vector3.Distance(avatarPos, npcPos);
@@ -37,11 +35,8 @@ public class CheckForItem : MonoBehaviour
             {
                 if(grabber.GrabbedObject.gameObject.transform.IsChildOf(item.transform))
                 {
-                    //dialogueManagerInstance.StartDialogue();
-                    //clickableInstance.StartDialogue();
-                    textbox.SetActive(true);
+                    QuestFlags.Set(condition);
                     Debug.Log("Avatar is holding the item");
-
                 }
                 else
                 {
@@ -51,9 +46,5 @@ public class CheckForItem : MonoBehaviour
             }
             
         }
-        //Debug.Log("Avatar is located at: " + avatarPos);
-        //Debug.Log("Hand is holding: " + grabber.GrabbedObject.name);
-        //Debug.Log("Avatar is located at: " + avatarPos);
-        //Debug.Log("Avatar is located at: ");
     }
 }
