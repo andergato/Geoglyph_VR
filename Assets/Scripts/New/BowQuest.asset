@@ -39,3 +39,19 @@ MonoBehaviour:
     - Thank you!
     showMarker: 0
     setFlagOnFinish: quest_bow_complete
+  - label: Quest 2 Offer
+    conditions:
+    - {fileID: 11400000, guid: f9fb335cf837acb4ca56188f56874f83, type: 2}
+    lines:
+    - Now that I have my bow, I can teach you how to shoot it.
+    - Aim for that pot back there and fire.
+    - Don't worry if it takes more than one arrow, we have plenty.
+    showMarker: 1
+    setFlagOnFinish: quest_two_started
+  - label: Bow Hit
+    conditions:
+    - {fileID: 11400000, guid: 3b7205a365e3ff04b9b4d6ea3c3d0983, type: 2}
+    lines:
+    - Good job!!
+    showMarker: 1
+    setFlagOnFinish: quest_two_complete

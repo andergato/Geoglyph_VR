@@ -15,6 +15,7 @@ TagManager:
   - Blowdart
   - PlayerHead
   - Ray
+  - Hittable
   layers:
   - Default
   - TransparentFX

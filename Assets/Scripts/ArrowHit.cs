@@ -17,14 +17,15 @@ public class ArrowHit : MonoBehaviour
     {
     }
 
-    //void OnTriggerEnter(Collider other)
-    //{
-    //    // Check if the object hit has a specific tag
-    //    if (other.gameObject.tag == "Enemy")
-    //    {
-    //        Debug.Log("Hit: " + other.gameObject.name);
-    //        Destroy(gameObject); // Destroy projectile
-    //    }
-    //}
+    void OnTriggerEnter(Collider other)
+    {
+        // Check if the object hit has a specific tag
+        if (other.gameObject.tag == "Hittable")
+        {
+            Debug.Log("Hit: " + other.gameObject.name);
+            Destroy(other.gameObject); // Destroy projectile
+            QuestFlags.Set("hit");
+        }
+    }
 
 }
