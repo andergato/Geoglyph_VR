@@ -121,7 +121,7 @@ public class PerformanceOverlay : MonoBehaviour
             if (mesh == null) continue;
 
             // triangles.Length is 3 * triangles
-            polyCount += mesh.triangles.Length / 3;
+            polyCount += GetTriangleCount(mesh);
             vertCount += mesh.vertexCount;
         }
 
@@ -137,9 +137,26 @@ public class PerformanceOverlay : MonoBehaviour
             var mesh = smr.sharedMesh;
             if (mesh == null) continue;
 
-            polyCount += mesh.triangles.Length / 3;
+            polyCount += GetTriangleCount(mesh);
             vertCount += mesh.vertexCount;
         }
+    }
+
+    //Works even when Read/Write is disables, since it uses index metadata instead of copying the triangles array
+    static int GetTriangleCount(Mesh mesh)
+    {
+        int tris = 0;
+
+        for (int i = 0; i < mesh.subMeshCount; i++)
+        {
+            var sm = mesh.GetSubMesh(i);
+            if (sm.topology == MeshTopology.Triangles)
+            {
+                tris += (int)(sm.indexCount / 3);
+            }
+        }
+
+        return tris;
     }
 
     // Optional: keep caches fresh when scenes load/unload additively
