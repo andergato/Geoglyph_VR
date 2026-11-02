@@ -101,7 +101,7 @@ public class NPCClickArea : MonoBehaviour
         for (int i = 1; i < renderers.Length; i++) b.Encapsulate(renderers[i].bounds);
 
         // Canvas sits at the model's center; width uses the larger horizontal extent so it works from any side.
-        canvas.transform.position = b.center;
+        canvas.transform.position = b.center + new Vector3(0f,0f,0f);
 
         float worldWidth = Mathf.Max(b.size.x, b.size.z) + padding * 2f;
         float worldHeight = b.size.y + padding * 2f;
