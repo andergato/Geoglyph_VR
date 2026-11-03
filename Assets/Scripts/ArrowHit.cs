@@ -22,6 +22,7 @@ public class ArrowHit : MonoBehaviour
         // Check if the object hit has a specific tag
         if (other.gameObject.tag == "Hittable")
         {
+            BowGameManager.Instance.RegisterHit();
             Debug.Log("Hit: " + other.gameObject.name);
             Destroy(other.gameObject); // Destroy projectile
             QuestFlags.Set("hit");
