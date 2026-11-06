@@ -57,7 +57,7 @@ public class HutInteriorSwitcher : MonoBehaviour
     {
         if (outsideContent != null)
             outsideContent.SetActive(false);
-
+            
         if (thisInterior != null)
             thisInterior.SetActive(true);
 

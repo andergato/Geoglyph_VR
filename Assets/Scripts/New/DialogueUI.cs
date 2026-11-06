@@ -34,6 +34,7 @@ public class DialogueUI : MonoBehaviour
     Coroutine typing;
     bool isTyping;
     int totalChars;
+    public Vector3 dialogueBoxOffset = new Vector3(0,0,0);
 
     void Start()
     {
@@ -75,7 +76,7 @@ public class DialogueUI : MonoBehaviour
 
     void OnStarted(NPCDialogue npc)
     {
-        panel.transform.position = npc.UIAnchor.position;
+        panel.transform.position = npc.UIAnchor.position + dialogueBoxOffset;
         if (speakerText) speakerText.text = npc.SpeakerName;
         panel.SetActive(true);
     }

@@ -16,6 +16,7 @@ public class BowController : MonoBehaviour
     private void Start()
     {
         bowString = item.transform.GetChild(0).GetChild(0).gameObject;
+        Debug.Log(bowString);
     }
     void Update()
     {
