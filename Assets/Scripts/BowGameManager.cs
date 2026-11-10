@@ -17,7 +17,7 @@ public class BowGameManager : MonoBehaviour
     [Header("Round Settings")]
     [SerializeField] private float roundTime = 60f;       // seconds
     [SerializeField] private int targetsToWin = 10;
-    [SerializeField] private bool startOnAwake = false;
+    [SerializeField] private string startFlag = "";
 
     [Header("UI (World-space TextMeshPro for VR)")]
     [SerializeField] private TMP_Text timerText;
@@ -46,12 +46,15 @@ public class BowGameManager : MonoBehaviour
     private void Start()
     {
         ResetRound();
-        if (startOnAwake) StartRound();
     }
 
     private void Update()
     {
-        if (State != GameState.Playing) return;
+        if (State != GameState.Playing)
+        {
+            if(QuestFlags.Has(startFlag)) StartRound();
+            return;
+        }
 
         TimeRemaining -= Time.deltaTime;
 
