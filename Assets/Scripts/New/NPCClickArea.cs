@@ -19,7 +19,7 @@ public class NPCClickArea : MonoBehaviour
     [SerializeField] Transform fitToModel;
     [SerializeField] float padding = 0.1f;
 
-    [Header("Behaviour")]
+    [Header("Behavior")]
     [SerializeField] bool faceCamera = true;
 
     Button button;

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UltimateXR.Manipulation;
 
-public class PickupUIHandler : MonoBehaviour
+public class PickupHandler : MonoBehaviour
 {
     [SerializeField] private GameObject panel;
 
@@ -10,7 +10,7 @@ public class PickupUIHandler : MonoBehaviour
     private void Awake()
     {
         grabbable = GetComponent<UxrGrabbableObject>();
-        panel.SetActive(false);
+       if(panel) panel.SetActive(false);
     }
 
     private void OnEnable()
@@ -33,11 +33,24 @@ public class PickupUIHandler : MonoBehaviour
 
     private void OnGrabbed(object sender, UxrManipulationEventArgs e)
     {
-        panel.SetActive(true);
+        if (panel) panel.SetActive(true);
+        SetLayer(gameObject, 6);
     }
 
     private void OnReleased(object sender, UxrManipulationEventArgs e)
     {
-        panel.SetActive(false);
+        if (panel) panel.SetActive(false);
+        SetLayer(gameObject, 3);
     }
+
+    // Recursively changes child layers of gameObject to new layer
+    private void SetLayer(GameObject obj, int newLayer)
+    {
+        obj.layer = newLayer;
+        foreach (Transform child in obj.transform)
+        {
+            SetLayer(child.gameObject, newLayer);
+        }
+    }
+
 }

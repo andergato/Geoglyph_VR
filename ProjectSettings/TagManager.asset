@@ -20,10 +20,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Outlined
   - Water
   - UI
-  - 
+  - Interactable
   - 
   - PW_VFX
   - PW_Object_Small
