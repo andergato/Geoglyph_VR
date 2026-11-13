@@ -7,6 +7,8 @@ public class PickupHandler : MonoBehaviour
 
     private UxrGrabbableObject grabbable;
 
+    [SerializeField] private int outlineLayer;
+
     private void Awake()
     {
         grabbable = GetComponent<UxrGrabbableObject>();
@@ -40,7 +42,7 @@ public class PickupHandler : MonoBehaviour
     private void OnReleased(object sender, UxrManipulationEventArgs e)
     {
         if (panel) panel.SetActive(false);
-        SetLayer(gameObject, 3);
+        SetLayer(gameObject, outlineLayer);
     }
 
     // Recursively changes child layers of gameObject to new layer
