@@ -11,7 +11,7 @@ public class PickupHandler : MonoBehaviour
 
     private void Awake()
     {
-        grabbable = GetComponent<UxrGrabbableObject>();
+       grabbable = GetComponent<UxrGrabbableObject>();
        if(panel) panel.SetActive(false);
     }
 
@@ -37,12 +37,14 @@ public class PickupHandler : MonoBehaviour
     {
         if (panel) panel.SetActive(true);
         SetLayer(gameObject, 6);
+        Debug.Log(gameObject.layer);
     }
 
     private void OnReleased(object sender, UxrManipulationEventArgs e)
     {
         if (panel) panel.SetActive(false);
         SetLayer(gameObject, outlineLayer);
+        Debug.Log(gameObject.layer);
     }
 
     // Recursively changes child layers of gameObject to new layer
