@@ -26,7 +26,7 @@ public class FacePlayerSmooth : MonoBehaviour
         //NPC.rotation.x = 0;
         //NPC.rotation.y = 0;
 
-        Vector3 avatarPos = avatar.CameraPosition;
+        Vector3 avatarPos = avatar.CameraPosition - new Vector3(0,0,0);
         if (avatarTransform == null) return;
 
         Vector3 direction = avatarTransform.position - transform.position;
